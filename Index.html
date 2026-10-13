@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TechFlow - Dashboard</title>
+
+  
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-slate-100 text-slate-800 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+
+  
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-30 flex w-60 -translate-x-full flex-col justify-between bg-white p-5 transition-transform duration-300 ease-in-out dark:bg-slate-800 lg:translate-x-0">
+    <div>
+      <div class="mb-6 flex items-center justify-between">
+        <p class="text-xl font-bold text-teal-600">TechFlow</p>
+        <button id="fechar-menu" class="text-xl active:scale-90 lg:hidden">✕</button>
+      </div>
+
+      <nav class="flex flex-col gap-1">
+        <a href="#" class="rounded-lg bg-teal-100 px-3 py-2 font-semibold text-teal-700 dark:bg-teal-900 dark:text-teal-200">Dashboard</a>
+        <a href="#projetos" class="rounded-lg px-3 py-2 transition duration-200 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 active:scale-95 dark:hover:bg-slate-700">Projetos</a>
+        <a href="#" class="rounded-lg px-3 py-2 transition duration-200 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 active:scale-95 dark:hover:bg-slate-700">Equipes</a>
+        <a href="#" class="rounded-lg px-3 py-2 transition duration-200 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 active:scale-95 dark:hover:bg-slate-700">Tarefas</a>
+      </nav>
+    </div>
+
+    
+    <div>
+      <p class="mb-2 text-sm font-semibold">Tema</p>
+      <div class="grid grid-cols-3 gap-1 rounded-lg bg-slate-100 p-1 dark:bg-slate-700">
+        <label class="cursor-pointer">
+          <input type="radio" name="tema" value="light" class="peer sr-only">
+          <span class="block rounded-md px-2 py-1 text-center text-sm transition-all duration-200 hover:opacity-70 peer-checked:bg-teal-600 peer-checked:text-white">Light</span>
+        </label>
+        <label class="cursor-pointer">
+          <input type="radio" name="tema" value="dark" class="peer sr-only">
+          <span class="block rounded-md px-2 py-1 text-center text-sm transition-all duration-200 hover:opacity-70 peer-checked:bg-teal-600 peer-checked:text-white">Dark</span>
+        </label>
+        <label class="cursor-pointer">
+          <input type="radio" name="tema" value="system" class="peer sr-only">
+          <span class="block rounded-md px-2 py-1 text-center text-sm transition-all duration-200 hover:opacity-70 peer-checked:bg-teal-600 peer-checked:text-white">System</span>
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  
+  <div class="lg:ml-60">
+
+    
+    <header class="sticky top-0 z-20 flex items-center justify-between gap-3 bg-white px-4 py-3 shadow-sm dark:bg-slate-800 sm:px-6">
+      <div class="flex flex-1 items-center gap-3">
+        <button id="abrir-menu" class="rounded-lg px-2 text-2xl transition hover:bg-slate-100 active:scale-90 dark:hover:bg-slate-700 lg:hidden">☰</button>
+        <input id="busca" type="search" placeholder="Pesquisar projetos..." class="campo w-full md:w-80">
+      </div>
+
+      
+      <div class="relative">
+        <button id="btn-usuario" class="flex items-center gap-2 rounded-lg p-1 transition duration-200 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500 active:scale-95 dark:hover:bg-slate-700">
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-teal-600 font-bold text-white">MA</span>
+          <span class="hidden text-left text-sm md:block">
+            <span class="block font-semibold">Marina Alves</span>
+            <span class="block text-xs text-slate-500 dark:text-slate-400">Gerente de Projetos</span>
+          </span>
+        </button>
+
+        <div id="menu-usuario" class="absolute right-0 mt-2 hidden w-44 rounded-lg bg-white p-2 shadow-lg dark:bg-slate-700">
+          <a href="#" class="block rounded-md px-3 py-2 text-sm transition hover:bg-slate-100 dark:hover:bg-slate-600">Meu perfil</a>
+          <a href="#" class="block rounded-md px-3 py-2 text-sm transition hover:bg-slate-100 dark:hover:bg-slate-600">Configurações</a>
+          <a href="#" class="block rounded-md px-3 py-2 text-sm text-red-500 transition hover:bg-slate-100 dark:hover:bg-slate-600">Sair</a>
+        </div>
+      </div>
+    </header>
+
+    
+    <main class="mx-auto max-w-6xl p-4 sm:p-6 2xl:max-w-screen-2xl">
+
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 class="text-2xl font-bold 2xl:text-4xl">Dashboard</h1>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Acompanhe projetos, equipes e indicadores.</p>
+        </div>
+        <button id="abrir-modal" class="rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white transition duration-200 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 active:scale-95">+ Novo projeto</button>
+      </div>
+
+      
+      <section class="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="rounded-xl bg-white p-4 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">Projetos ativos</p>
+          <p class="text-3xl font-bold text-teal-600">12</p>
+        </div>
+        <div class="rounded-xl bg-white p-4 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">Projetos concluídos</p>
+          <p class="text-3xl font-bold text-green-600">38</p>
+        </div>
+        <div class="rounded-xl bg-white p-4 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">Tarefas pendentes</p>
+          <p class="text-3xl font-bold text-amber-500">27</p>
+        </div>
+        <div class="rounded-xl bg-white p-4 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <p class="text-sm text-slate-500 dark:text-slate-400">Equipes</p>
+          <p class="text-3xl font-bold text-sky-600">6</p>
+        </div>
+      </section>
+
+      
+      <h2 id="projetos" class="mb-3 text-xl font-bold">Projetos</h2>
+      <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+        
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 sm:col-span-2 xl:row-span-2">
+          <span class="rounded-full bg-sky-100 px-2 py-1 text-xs font-semibold text-sky-700">Web</span>
+          <h3 class="mt-3 text-xl font-bold transition-colors group-hover:text-teal-600">Portal do Cliente</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Área logada para clientes acompanharem pedidos, faturas e chamados em um só lugar.</p>
+          <ul class="mt-4 list-inside list-disc text-sm text-slate-600 dark:text-slate-300">
+            <li>Login único (SSO)</li>
+            <li>Painel de faturas</li>
+            <li>Central de chamados</li>
+          </ul>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:72%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">72% concluído · Prazo: 28/11</p>
+        </article>
+
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <span class="rounded-full bg-violet-100 px-2 py-1 text-xs font-semibold text-violet-700">Mobile</span>
+          <h3 class="mt-3 text-lg font-bold transition-colors group-hover:text-teal-600">App TechFlow</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Versão para iOS e Android.</p>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:45%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">45% · Prazo: 15/12</p>
+        </article>
+
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800">
+          <span class="rounded-full bg-indigo-100 px-2 py-1 text-xs font-semibold text-indigo-700">Cloud</span>
+          <h3 class="mt-3 text-lg font-bold transition-colors group-hover:text-teal-600">Migração para Cloud</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Levar os serviços para a nuvem.</p>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:88%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">88% · Prazo: 31/10</p>
+        </article>
+
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 sm:col-span-2">
+          <span class="rounded-full bg-pink-100 px-2 py-1 text-xs font-semibold text-pink-700">Design</span>
+          <h3 class="mt-3 text-lg font-bold transition-colors group-hover:text-teal-600">Novo Design System</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Biblioteca de componentes, cores e tipografia para todos os produtos.</p>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:30%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">30% · Prazo: 20/01</p>
+        </article>
+
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 xl:col-span-2">
+          <span class="rounded-full bg-sky-100 px-2 py-1 text-xs font-semibold text-sky-700">Web</span>
+          <h3 class="mt-3 text-lg font-bold transition-colors group-hover:text-teal-600">API de Pagamentos</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Integração com novos meios de pagamento e Pix.</p>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:60%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">60% · Prazo: 10/11</p>
+        </article>
+
+        <article class="projeto group rounded-xl bg-white p-5 shadow transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:bg-slate-800 xl:col-span-2">
+          <span class="rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700">Dados</span>
+          <h3 class="mt-3 text-lg font-bold transition-colors group-hover:text-teal-600">Data Lake de Vendas</h3>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Centralizar os dados comerciais para os relatórios.</p>
+          <div class="mt-4 h-2 rounded-full bg-slate-200 dark:bg-slate-700"><div class="h-2 rounded-full bg-teal-500" style="width:52%"></div></div>
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">52% · Prazo: 05/12</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  
+  <div id="modal" class="fixed inset-0 z-40 hidden items-center justify-center bg-black/50 p-4">
+    <div class="caixa-modal max-h-full w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-6 dark:bg-slate-800">
+
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-xl font-bold">Novo projeto</h2>
+        <button id="fechar-modal" class="text-xl transition active:scale-90">✕</button>
+      </div>
+
+      <form id="formulario" novalidate class="flex flex-col gap-3">
+
+        <div>
+          <label for="nome" class="mb-1 block text-sm font-semibold">Nome</label>
+          <input id="nome" type="text" placeholder="Ex.: Portal de Parceiros" class="campo">
+          <p id="erro-nome" class="mt-1 hidden text-sm text-red-500"></p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div>
+            <label for="responsavel" class="mb-1 block text-sm font-semibold">Responsável</label>
+            <select id="responsavel" class="campo">
+              <option value="">Selecione...</option>
+              <option>Ana Lima</option>
+              <option>Bruno Costa</option>
+              <option>Carla Mendes</option>
+            </select>
+            <p id="erro-responsavel" class="mt-1 hidden text-sm text-red-500"></p>
+          </div>
+
+          <div>
+            <label for="categoria" class="mb-1 block text-sm font-semibold">Categoria</label>
+            <select id="categoria" class="campo">
+              <option value="">Selecione...</option>
+              <option>Web</option>
+              <option>Mobile</option>
+              <option>Cloud</option>
+              <option>Dados</option>
+              <option>Design</option>
+            </select>
+            <p id="erro-categoria" class="mt-1 hidden text-sm text-red-500"></p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div>
+            <p class="mb-1 text-sm font-semibold">Prioridade</p>
+            <div class="grid grid-cols-3 gap-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="prioridade" value="Baixa" class="peer sr-only">
+                <span class="block rounded-lg border-2 border-slate-300 py-2 text-center text-sm transition-all duration-200 hover:border-teal-400 peer-checked:border-teal-600 peer-checked:bg-teal-600 peer-checked:text-white">Baixa</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="prioridade" value="Média" class="peer sr-only">
+                <span class="block rounded-lg border-2 border-slate-300 py-2 text-center text-sm transition-all duration-200 hover:border-teal-400 peer-checked:border-teal-600 peer-checked:bg-teal-600 peer-checked:text-white">Média</span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="prioridade" value="Alta" class="peer sr-only">
+                <span class="block rounded-lg border-2 border-slate-300 py-2 text-center text-sm transition-all duration-200 hover:border-teal-400 peer-checked:border-teal-600 peer-checked:bg-teal-600 peer-checked:text-white">Alta</span>
+              </label>
+            </div>
+            <p id="erro-prioridade" class="mt-1 hidden text-sm text-red-500"></p>
+          </div>
+
+          <div>
+            <label for="prazo" class="mb-1 block text-sm font-semibold">Prazo</label>
+            <input id="prazo" type="date" class="campo">
+            <p id="erro-prazo" class="mt-1 hidden text-sm text-red-500"></p>
+          </div>
+        </div>
+
+        <div>
+          <label for="descricao" class="mb-1 block text-sm font-semibold">Descrição</label>
+          <textarea id="descricao" rows="3" placeholder="Explique o objetivo do projeto" class="campo"></textarea>
+          <p id="erro-descricao" class="mt-1 hidden text-sm text-red-500"></p>
+        </div>
+
+        <p id="sucesso" class="hidden rounded-lg bg-green-100 p-3 text-sm font-semibold text-green-700">Projeto cadastrado com sucesso!</p>
+
+        <div class="flex justify-end gap-3">
+          <button type="button" id="cancelar" class="rounded-lg border-2 border-slate-300 px-4 py-2 font-semibold transition duration-200 hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-slate-300 active:scale-95 dark:hover:bg-slate-700">Cancelar</button>
+          <button type="submit" id="salvar" class="rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white transition duration-200 hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50">Salvar projeto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
