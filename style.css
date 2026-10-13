@@ -1,0 +1,60 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+.campo {
+  display: block;
+  border: 2px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.caixa-modal .campo {
+  width: 100%;
+}
+
+
+.dark .campo {
+  background: #334155;
+  border-color: #475569;
+  color: white;
+}
+
+
+.campo:focus {
+  border-color: #14b8a6;
+}
+
+
+.campo.erro {
+  border-color: #ef4444;
+}
+
+.campo.sucesso {
+  border-color: #22c55e;
+}
+
+
+.caixa-modal {
+  animation: aparecer 0.25s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
