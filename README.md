@@ -77,10 +77,8 @@ techflow-dashboard/
 
 ## Dificuldades encontradas
 
-> Ajuste este trecho com a experiência real do grupo antes de entregar.
-
-- Configurar o `dark:` do Tailwind via CDN: foi preciso definir `darkMode: 'class'` e alternar a classe `dark` manualmente com JavaScript.
-- Evitar o "flash" de tema claro ao recarregar a página: resolvido aplicando o tema salvo em um pequeno script no `<head>`, antes da renderização.
-- Fazer os estados de erro/sucesso do formulário sobrescreverem as bordas do Tailwind (inclusive no dark mode): resolvido com seletores de maior especificidade em `css/styles.css`.
+- Configurar o dark: do Tailwind via CDN: foi preciso definir `darkMode: 'class'` e alternar a classe `dark` manualmente com JavaScript.
+- Evitar o flash de tema claro ao recarregar a página: resolvido aplicando o tema salvo em um pequeno script no `<head>`, antes da renderização.
+- Fazer os estados de erro e sucesso do formulário sobrescreverem as bordas do Tailwind: resolvido com seletores de maior especificidade em `css/styles.css`.
 - Montar o grid com cards de tamanhos diferentes sem deixar espaços vazios: foi necessário planejar a soma de `col-span-*` e `row-span-*` em cada breakpoint.
-- Manter o menu mobile acessível: controle de `aria-expanded`, fechamento com `Esc` e bloqueio da rolagem da página ao abrir a Sidebar.
+- Manter o menu mobile acessível: controle de aria-expanded, fechamento com Esc e bloqueio da rolagem da página ao abrir a Sidebar.
